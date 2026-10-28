@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { ARCHIVE_ITEM, ARCHIVE_ITEM_PAGE, isRune, type Page } from "@/lib/runes-shared";
+import { ARCHIVE_ITEM, ARCHIVE_ITEM_PAGE, SOLVERS_LP1, SOLVERS_LP1_SLUGS, isRune, type Page } from "@/lib/runes-shared";
 
 type Tok =
   | { t: "rune"; ch: string; lat: string | null }
@@ -125,7 +125,10 @@ export default function RunesViewer({ pages }: { pages: Page[] }) {
               <p className="thumb-cap">archive.org, file {page.archiveFile}.jpg</p>
             </>
           ) : (
-            <p className="no-image">First-part image; not in the <a href={ARCHIVE_ITEM_PAGE} rel="noopener">archived 2014 dump</a>.</p>
+            <p className="no-image">
+              First-part image, not in the <a href={ARCHIVE_ITEM_PAGE} rel="noopener">archived 2014 dump</a>.
+              {SOLVERS_LP1_SLUGS[page.image] ? <> <a href={`${SOLVERS_LP1}/${SOLVERS_LP1_SLUGS[page.image]}/`} rel="noopener">See it at CicadaSolvers</a>, image {img} there too.</> : null}
+            </p>
           )}
         </div>
       </div>

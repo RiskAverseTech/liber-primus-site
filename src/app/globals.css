@@ -198,3 +198,25 @@ p.lede { color: var(--ink-soft); margin: 0 0 24px; max-width: 62ch; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .svg .cell.green { fill: #5f9f6c; } }
 @media (max-width: 480px) { .panel-head h2 { font-size: 1.3rem; } .panel .viz { padding: 6px 2px 2px; } }
 .svg .rune.inline { font-size: 11px; fill: var(--ink-soft); }
+
+/* ----- Read: orientation above the injected page, other sites below it ----- */
+.orient { margin: 0 0 26px; padding: 14px 18px; border-left: 3px solid var(--red); background: var(--panel); font-size: .95rem; }
+.orient p { margin: 0; max-width: 66ch; }
+.orient b { font-family: var(--display); font-weight: 600; font-size: 1.1em; }
+.elsewhere { margin: 44px auto 0; padding-top: 18px; border-top: 1px solid var(--rule); }
+.elsewhere h2 { font-family: var(--display); font-weight: 600; font-size: 1.6rem; margin: 0 0 6px; }
+.elsewhere > p { color: var(--ink-soft); margin: 0 0 14px; }
+.elsewhere ul { list-style: none; padding: 0; margin: 0; }
+.elsewhere li { padding: 9px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 15rem) 1fr; gap: 2px 18px; font-size: .92rem; }
+.elsewhere li span { color: var(--ink-soft); }
+@media (max-width: 560px) { .elsewhere li { grid-template-columns: 1fr; } }
+
+/* ----- Runes: the Gematria Primus key ----- */
+.gp-key { margin: 0 0 22px; border: 1px solid var(--rule); border-radius: 4px; background: var(--panel); }
+.gp-key summary { cursor: pointer; padding: 10px 14px; font-size: .92rem; }
+.gp-key summary::marker { color: var(--red); }
+.gp-key > p { margin: 0; padding: 0 14px 6px; color: var(--ink-soft); font-size: .9rem; max-width: 66ch; }
+.gp-key table { border-collapse: collapse; width: 100%; margin: 4px 0 0; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.gp-key th, .gp-key td { text-align: left; padding: 5px 14px; border-top: 1px solid var(--rule); }
+.gp-key th { font-weight: 500; color: var(--ink-soft); font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; }
+.gp-key td.rune { font-family: var(--runic); font-size: 1.35rem; line-height: 1; }
