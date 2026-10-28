@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { asReadHtml } from "@/lib/status";
 import { ARCHIVE_ITEM_PAGE } from "@/lib/runes-shared";
+import AudioPlayer from "@/components/AudioPlayer";
 
 export const metadata: Metadata = { title: "Liber Primus, as read" };
 
@@ -30,8 +31,13 @@ export default function ReadPage() {
           the pages that have been read, and what the research has measured about the part that has not. It does not
           claim a decoding.
         </p>
+        <p className="orient-audio">
+          <span className="play demo" aria-hidden="true"></span> plays a reading of the section beside it. In the two
+          koans every line has its own, and the master and the narrator are two voices.
+        </p>
       </aside>
       <div className="wrap asread" dangerouslySetInnerHTML={{ __html: asReadHtml() }} />
+      <AudioPlayer />
       <section className="wrap elsewhere" aria-labelledby="elsewhere-h">
         <h2 id="elsewhere-h">Elsewhere</h2>
         <p>Other sites on the book, each doing something this one does not.</p>

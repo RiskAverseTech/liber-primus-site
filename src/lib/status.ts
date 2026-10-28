@@ -1,6 +1,9 @@
 import { marked } from "marked";
 import { sectionAnchors } from "./slug";
 import { synced, RESEARCH_REPO_URL } from "./synced";
+import { injectAudio, audioFiles } from "./audio";
+import { existsSync } from "node:fs";
+import path from "node:path";
 
 const README_URL = `${RESEARCH_REPO_URL}#readme`;
 
@@ -28,5 +31,7 @@ export function asReadHtml(): string {
   const start = page.indexOf('<div class="wrap">');
   const end = page.lastIndexOf("</div>");
   if (start < 0 || end < start) throw new Error("liber-primus-as-read.html: could not find the .wrap block");
-  return offsiteLinksInNewTab(page.slice(start + '<div class="wrap">'.length, end));
+  const missing = audioFiles().filter((f) => !existsSync(path.join(process.cwd(), "public", f)));
+  if (missing.length) throw new Error(`audio: missing under public/: ${missing.join(", ")}`);
+  return injectAudio(offsiteLinksInNewTab(page.slice(start + '<div class="wrap">'.length, end)));
 }

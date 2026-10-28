@@ -68,6 +68,21 @@ Node 20 or later. `npm run lint` type-checks.
 
 Edit `content/media.json`; each item has `title`, `date` (YYYY-MM-DD), `url`, `kind` (`video`, `audio`, `image` or `link`) and an optional `note`. Newest first on the page. Commit and push, or run the workflow.
 
+## Audio
+
+`public/audio/` holds readings of the solved text as mp3, one file per section
+(`warning`, `welcome`, `wisdom`, `loss-of-divinity` and its five subsections as
+`lod-*`, `end`, `parable`). The two koans were recorded as two voices, narrator
+and master, one file per voice with a pause wherever the other voice speaks;
+those files were cut at the pauses into one clip per line (`koan1-n1` …,
+`koan1-m1` …, `koan2-*`), so each line on the Read page has its own play button
+and the heading's button plays the dialogue in order.
+
+`src/lib/audio.ts` maps headings and koan lines to clips and injects the
+buttons into the synced reading page at build time. It matches the headings in
+order and stops the build if the page's shape changes or a clip is missing.
+`src/components/AudioPlayer.tsx` is the one audio element on the page.
+
 ## Design notes
 
 - Light and dark themes follow the system setting; the toggle in the header stores a choice in `localStorage` only. No cookies. Page views and referrers are counted by Vercel Web Analytics (`@vercel/analytics`, cookieless; enable Web Analytics on the Vercel project for the data to appear). The only other third-party request is the archive.org thumbnail on the Runes page.
