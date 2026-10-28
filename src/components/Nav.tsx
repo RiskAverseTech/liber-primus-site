@@ -7,6 +7,7 @@ const LINKS = [
   ["/", "Read"],
   ["/runes", "Runes"],
   ["/status", "Status"],
+  ["/analysis", "Analysis"],
   ["/media", "Media"],
 ] as const;
 

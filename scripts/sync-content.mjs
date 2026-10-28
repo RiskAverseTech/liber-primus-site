@@ -29,6 +29,14 @@ const FILES = [
   ["data/processed/pages.json", (t) => t.trimStart().startsWith("{") && t.includes('"solved"')],
   ["data/raw/iddqd__liber-primus__transcription--master.txt", (t) => t.split("%").length > 70],
   ["data/images/PROVENANCE.md", (t) => t.includes("ky2khlqdf7qdznac.onion")],
+  // the Analysis page's numbers
+  ["ledger.json", (t) => t.trimStart().startsWith("{") && t.includes('"lanes"')],
+  ["results/doublet_audit.md", (t) => t.includes("| unsolved ciphertext |")],
+  ["results/closure_bundle.md", (t) => t.includes("Polyalphabetic solved pages pooled")],
+  ["results/kfixed_echo.md", (t) => t.includes("K-fixed null")],
+  ["results/mechanism.md", (t) => t.includes("LP2's own values")],
+  ["results/power.md", (t) => t.includes("## Lane B")],
+  ["results/lag_spectrum.md", (t) => t.includes("| lag | pairs | repeats |")],
 ];
 
 async function fetchText(repoPath) {

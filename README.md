@@ -10,6 +10,7 @@ Cicada 3301's Liber Primus, the solved pages as text and as runes, the unsolved 
 - **Read** (`/`): the solved part of the book as readable text. This is the research repo's `docs/liber-primus-as-read.html`, fetched at build time and set in the site's layout with its own typography.
 - **Runes** (`/runes`): every page of the book in the rune alphabet, from the rtkd/iddqd master transcription (word gap `-`, clause `.`, line `/`, paragraph `&`; a line that ends inside a word continues with no gap). On the 17 solved pages the decrypted plaintext sits under each rune in the book's own spelling, aligned rune for rune from `data/processed/pages.json`. A checkbox adds the 56 unsolved pages (55 with runes; LP2-50 carries only a grid of two-character codes). Previous/next buttons, a dropdown and the left/right arrow keys switch pages; `#image-NN` in the URL opens a page directly. Each second-part page links to its authentic image in the archive.org item `ky2khlqdf7qdznac.onion` (file number = image number − 17, byte-identical to the 2014 release per the repo's `data/images/PROVENANCE.md`); the first-part images are not in that dump, so those pages carry no link.
 - **Status** (`/status`): the research repo's `STATUS.md`, rendered, with every `§N` linked to that section of the README (anchors follow GitHub's slug rule, as in the repo's `src/toc.py`).
+- **Analysis** (`/analysis`): six animated panels, one negative result each, built from the real numbers: the repeat deficit (the rune stream itself scrolls past and the 86 repeats flash), the flat lag spectrum, the two within-word echoes with the S carrier, the 14-rule mechanism bake-off grid, detection power by page length with the nine short pages, and the sweep counter. Inline SVG driven by `requestAnimationFrame`, no chart library; each panel runs only while on screen, holds still with its figures readable while the pointer rests on it, and shows its final state under `prefers-reduced-motion`. The numbers are parsed at build time from `STATUS.md`, `ledger.json` and `results/{doublet_audit,closure_bundle,kfixed_echo,mechanism,power,lag_spectrum}.md`; the counts the page animates (86, 102, 77, 11) are recomputed from the transcription and must equal the files' figures or the build fails.
 - **Media** (`/media`): a list read from `content/media.json`. Empty for now.
 
 Page numbering: the site shows image numbers of the complete 75-page set (00–74). Transcription chunk 1 is image 01 (image 02 is the "Intus" title page); from chunk 2 on, image = chunk + 1. Unsolved page LP2-k is image 17 + k.
@@ -26,6 +27,13 @@ data/processed/solved_plaintext_latin.txt
 data/processed/pages.json
 data/raw/iddqd__liber-primus__transcription--master.txt
 data/images/PROVENANCE.md
+ledger.json
+results/doublet_audit.md
+results/closure_bundle.md
+results/kfixed_echo.md
+results/mechanism.md
+results/power.md
+results/lag_spectrum.md
 ```
 
 Each file is checked for a marker it must contain; a missing, empty or wrong-looking file stops the build with a message naming it. The sync also records the source commit in `content/synced/manifest.json`, which the footer shows. A rebuild is therefore all it takes to refresh the site; the two git histories never touch.
