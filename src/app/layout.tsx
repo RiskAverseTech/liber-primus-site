@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, IBM_Plex_Sans, IBM_Plex_Mono, Noto_Sans_Runic } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { themeInitScript } from "@/components/ThemeToggle";
@@ -41,6 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main>{children}</main>
         <Footer sha={m.sha} date={m.date} />
+        {/* Vercel Web Analytics: page views and referrers, no cookies, no cross-site identifier. */}
+        <Analytics />
       </body>
     </html>
   );

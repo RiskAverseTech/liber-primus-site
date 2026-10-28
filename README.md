@@ -70,7 +70,7 @@ Edit `content/media.json`; each item has `title`, `date` (YYYY-MM-DD), `url`, `k
 
 ## Design notes
 
-- Light and dark themes follow the system setting; the toggle in the header stores a choice in `localStorage` only. No cookies, no analytics, no third-party requests except the archive.org thumbnail on the Runes page.
+- Light and dark themes follow the system setting; the toggle in the header stores a choice in `localStorage` only. No cookies. Page views and referrers are counted by Vercel Web Analytics (`@vercel/analytics`, cookieless; enable Web Analytics on the Vercel project for the data to appear). The only other third-party request is the archive.org thumbnail on the Runes page.
 - Fonts (Cormorant Garamond, IBM Plex Sans and Mono, Noto Sans Runic for U+16A0–U+16FF) are fetched at build time by `next/font` and served from the site; system runic fonts are the fallback.
 - Text of the solved pages is Cicada 3301's, reproduced as transcribed by the community. Research: [RiskAverseTech/cicada-ioc](https://github.com/RiskAverseTech/cicada-ioc).
 
