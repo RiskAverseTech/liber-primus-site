@@ -1,0 +1,35 @@
+# Redeploys the site on Vercel by calling a deploy hook, so the content fetched
+# from RiskAverseTech/cicada-ioc at build time is refreshed without a commit here.
+#
+# Setup (two steps, once):
+#   1. In the Vercel project (ratc/liber-primus-site): Settings -> Git -> Deploy Hooks,
+#      create a hook for the `main` branch and copy its URL.
+#   2. Store it as a repository secret:
+#        gh secret set VERCEL_DEPLOY_HOOK_URL --repo RiskAverseTech/liber-primus-site
+#      (paste the URL when prompted; it is never printed or committed).
+name: Redeploy site
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily at 06:17 UTC. The research repository is committed to often; a daily
+    # rebuild keeps the Status and Runes pages within a day of its main branch.
+    - cron: "17 6 * * *"
+
+permissions: {}
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call the Vercel deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK_URL is not set; see the comment at the top of this workflow." >&2
+            exit 1
+          fi
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "$HOOK")
+          echo "Vercel answered HTTP $code"
+          case "$code" in 2*) ;; *) exit 1 ;; esac
