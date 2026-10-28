@@ -14,10 +14,18 @@ const body = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500"], variabl
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400"], variable: "--font-mono", display: "swap" });
 const runic = Noto_Sans_Runic({ subsets: ["runic"], weight: ["400"], variable: "--font-runic", display: "swap" });
 
+const SITE_URL = "https://liber-primus-site.vercel.app";
+const DESCRIPTION =
+  "Cicada 3301's Liber Primus: the 17 solved pages as text and as runes, the 55 unsolved pages as transcribed, and a measured account of what has been tested and what has not been found.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: { default: "Liber Primus", template: "%s · Liber Primus" },
-  description: "Cicada 3301's Liber Primus: the solved pages as text and as runes, the unsolved pages as transcribed, and the standing of the research.",
+  description: DESCRIPTION,
   robots: { index: true, follow: true },
+  // Share cards: the image comes from src/app/opengraph-image.tsx, generated at build time.
+  openGraph: { type: "website", siteName: "Liber Primus", url: SITE_URL, title: "Liber Primus", description: DESCRIPTION, locale: "en" },
+  twitter: { card: "summary_large_image", title: "Liber Primus", description: DESCRIPTION },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
