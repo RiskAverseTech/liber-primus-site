@@ -38,7 +38,7 @@ export default function ReadPage() {
         <ul>
           {ELSEWHERE.map((e) => (
             <li key={e.url}>
-              <a href={e.url} rel="noopener">{e.name}</a>
+              <a href={e.url} target="_blank" rel="noopener">{e.name}</a>
               <span>{e.what}</span>
             </li>
           ))}

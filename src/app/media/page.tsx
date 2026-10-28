@@ -28,7 +28,7 @@ export default function MediaPage() {
           {list.map((it) => (
             <li key={it.url}>
               <span className="kind">{it.kind ?? "link"}</span>
-              <h2><a href={it.url} rel="noopener">{it.title}</a></h2>
+              <h2><a href={it.url} target="_blank" rel="noopener">{it.title}</a></h2>
               <time dateTime={it.date}>{it.date}</time>
               {it.note ? <p>{it.note}</p> : null}
             </li>

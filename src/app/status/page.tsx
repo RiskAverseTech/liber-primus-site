@@ -15,8 +15,8 @@ export default function StatusPage() {
         links to that section of the README.
       </p>
       <div className="status-links">
-        <a href={readmeUrl} rel="noopener">README, all sections</a>
-        <a href={statusUrl} rel="noopener">STATUS.md on GitHub</a>
+        <a href={readmeUrl} target="_blank" rel="noopener">README, all sections</a>
+        <a href={statusUrl} target="_blank" rel="noopener">STATUS.md on GitHub</a>
       </div>
       <div className="scroll" dangerouslySetInnerHTML={{ __html: html }} />
       <p className="src-line">

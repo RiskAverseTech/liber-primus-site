@@ -4,7 +4,7 @@ export default function Footer({ sha, date }: { sha: string | null; date: string
     <footer className="site-footer">
       <div className="bar">
         <span>
-          Research: <a href="https://github.com/RiskAverseTech/cicada-ioc" rel="noopener">RiskAverseTech/cicada-ioc</a> · text of the solved pages is Cicada 3301&rsquo;s, reproduced as transcribed
+          Research: <a href="https://github.com/RiskAverseTech/cicada-ioc" target="_blank" rel="noopener">RiskAverseTech/cicada-ioc</a> · text of the solved pages is Cicada 3301&rsquo;s, reproduced as transcribed
         </span>
         <span>
           Built from the research repository&rsquo;s main branch{sha ? <> at <code>{sha.slice(0, 7)}</code></> : null}{when ? ` (${when})` : null}. Page views are counted by Vercel Web Analytics, which sets no cookies.

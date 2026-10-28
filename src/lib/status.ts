@@ -4,6 +4,11 @@ import { synced, RESEARCH_REPO_URL } from "./synced";
 
 const README_URL = `${RESEARCH_REPO_URL}#readme`;
 
+/** Off-site links open in a new tab; in-site links (relative hrefs) stay in the tab. The CSS adds the arrow. */
+function offsiteLinksInNewTab(html: string): string {
+  return html.replace(/<a href="(https?:\/\/[^"]*)"/g, '<a href="$1" target="_blank" rel="noopener"');
+}
+
 /** STATUS.md rendered to HTML, with every "§N" turned into a link to that README section. */
 export function statusHtml(): { html: string; readmeUrl: string; statusUrl: string } {
   const md = synced("STATUS.md").replace(/^# Status box\s*/m, "");
@@ -13,6 +18,7 @@ export function statusHtml(): { html: string; readmeUrl: string; statusUrl: stri
     const a = anchors[n];
     return a ? `<a href="${RESEARCH_REPO_URL}#${a}" class="sec" title="README section ${n}">§${n}</a>` : m;
   });
+  html = offsiteLinksInNewTab(html);
   return { html, readmeUrl: README_URL, statusUrl: `${RESEARCH_REPO_URL}/blob/main/STATUS.md` };
 }
 
@@ -22,5 +28,5 @@ export function asReadHtml(): string {
   const start = page.indexOf('<div class="wrap">');
   const end = page.lastIndexOf("</div>");
   if (start < 0 || end < start) throw new Error("liber-primus-as-read.html: could not find the .wrap block");
-  return page.slice(start + '<div class="wrap">'.length, end);
+  return offsiteLinksInNewTab(page.slice(start + '<div class="wrap">'.length, end));
 }

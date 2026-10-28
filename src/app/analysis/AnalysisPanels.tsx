@@ -74,7 +74,7 @@ function Panel({ title, caption, link, children, ph, index }: { title: string; c
         <span className="state" aria-live="off">{ph.held ? "holding" : ""}</span>
       </div>
       <div className="viz">{children}</div>
-      <p className="caption">{caption} <a href={link.href} rel="noopener">{link.label}</a></p>
+      <p className="caption">{caption} <a href={link.href} target="_blank" rel="noopener">{link.label}</a></p>
     </section>
   );
 }

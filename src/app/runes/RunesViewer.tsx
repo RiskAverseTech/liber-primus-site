@@ -119,15 +119,15 @@ export default function RunesViewer({ pages }: { pages: Page[] }) {
         <div className="thumb-wrap">
           {page.archiveFile !== null ? (
             <>
-              <a className="thumb" href={`${ARCHIVE_ITEM}/${page.archiveFile}.jpg`} rel="noopener" title={`The page image as archived (file ${page.archiveFile}.jpg, byte-identical to the 2014 release)`}>
+              <a className="thumb" href={`${ARCHIVE_ITEM}/${page.archiveFile}.jpg`} target="_blank" rel="noopener" title={`The page image as archived (file ${page.archiveFile}.jpg, byte-identical to the 2014 release)`}>
                 <img src={`${ARCHIVE_ITEM}/${page.archiveFile}_thumb.jpg`} alt={`Thumbnail of page image ${img}`} loading="lazy" referrerPolicy="no-referrer" width={72} height={108} />
               </a>
               <p className="thumb-cap">archive.org, file {page.archiveFile}.jpg</p>
             </>
           ) : (
             <p className="no-image">
-              First-part image, not in the <a href={ARCHIVE_ITEM_PAGE} rel="noopener">archived 2014 dump</a>.
-              {SOLVERS_LP1_SLUGS[page.image] ? <> <a href={`${SOLVERS_LP1}/${SOLVERS_LP1_SLUGS[page.image]}/`} rel="noopener">See it at CicadaSolvers</a>, image {img} there too.</> : null}
+              First-part image, not in the <a href={ARCHIVE_ITEM_PAGE} target="_blank" rel="noopener">archived 2014 dump</a>.
+              {SOLVERS_LP1_SLUGS[page.image] ? <> <a href={`${SOLVERS_LP1}/${SOLVERS_LP1_SLUGS[page.image]}/`} target="_blank" rel="noopener">See it at CicadaSolvers</a>, image {img} there too.</> : null}
             </p>
           )}
         </div>
@@ -158,7 +158,7 @@ export default function RunesViewer({ pages }: { pages: Page[] }) {
           {page.solved ? "Reading: the decrypted plaintext, rune for rune, in the book's spelling." : "Unsolved: shown as transcribed, no reading."}
         </span>
         <span>
-          Transcription: rtkd/iddqd master file, <a href="https://github.com/RiskAverseTech/cicada-ioc/blob/main/data/raw/iddqd__liber-primus__transcription--master.txt" rel="noopener">pinned copy</a>
+          Transcription: rtkd/iddqd master file, <a href="https://github.com/RiskAverseTech/cicada-ioc/blob/main/data/raw/iddqd__liber-primus__transcription--master.txt" target="_blank" rel="noopener">pinned copy</a>
         </span>
       </div>
     </>

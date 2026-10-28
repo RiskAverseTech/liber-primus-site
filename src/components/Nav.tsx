@@ -21,7 +21,7 @@ export default function Nav() {
           {LINKS.map(([href, label]) => (
             <Link key={href} href={href} aria-current={path === href ? "page" : undefined}>{label}</Link>
           ))}
-          <a href="https://github.com/RiskAverseTech/cicada-ioc" rel="noopener">Research</a>
+          <a href="https://github.com/RiskAverseTech/cicada-ioc" target="_blank" rel="noopener">Research</a>
         </nav>
         <ThemeToggle />
       </div>

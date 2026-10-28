@@ -220,3 +220,6 @@ p.lede { color: var(--ink-soft); margin: 0 0 24px; max-width: 62ch; }
 .gp-key th, .gp-key td { text-align: left; padding: 5px 14px; border-top: 1px solid var(--rule); }
 .gp-key th { font-weight: 500; color: var(--ink-soft); font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; }
 .gp-key td.rune { font-family: var(--runic); font-size: 1.35rem; line-height: 1; }
+
+/* ----- Off-site links open a new tab and say so; image links and the dense §N references in Status are exempt from the arrow ----- */
+a[target="_blank"]:not(.thumb):not(.sec)::after { content: " \2197"; font-size: .78em; vertical-align: .1em; opacity: .75; }
