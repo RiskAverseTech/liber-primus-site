@@ -97,7 +97,7 @@ export function loadAnalysis(): AnalysisData {
   const k5 = match(kfixed, /^\| 5 \| (\d+) \| ([\d.]+) ± ([\d.]+) \| ([+-][\d.]+) \| ([\d.]+) \|/m, "kfixed_echo lag-5 row");
   const e6 = match(closure, /^\| 6 \| ([\d,]+) \| ([\d.]+) ± ([\d.]+) \| (\d+) \(z ([+-][\d.]+)\)/m, "closure_bundle lag-6 row");
   const pairs5 = match(closure, /^\| 5 \| ([\d,]+) \|/m, "closure_bundle lag-5 pairs");
-  const sS = match(status, /(\d+) of the pairs S \(([\d.]+) expected, p ([\d.]+)\)/, "STATUS S-carrier figures");
+  const sS = match(status, /(\d+) of the pairs S \(([\d.]+) expected[^,;)]*, p ([\d.]+)/, "STATUS S-carrier figures");
   const R = RUNES;
   const idx = (ch: string) => R.indexOf(ch);
   let n5 = 0, n6 = 0, nS = 0;
