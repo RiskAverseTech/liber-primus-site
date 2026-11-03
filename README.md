@@ -45,7 +45,7 @@ Each file is checked for a marker it must contain; a missing, empty or wrong-loo
 
 The workflow `.github/workflows/redeploy.yml` calls a Vercel deploy hook every day at 06:17 UTC and whenever it is run by hand (Actions → Redeploy site → Run workflow). It needs one secret.
 
-1. In the Vercel project `ratc/liber-primus-site`: Settings → Git → Deploy Hooks → create a hook for branch `main`, copy the URL. (Deploy hooks appear once the project is connected to this GitHub repository: `vercel git connect` from this folder, or Settings → Git → Connect.)
+1. In the Vercel project for this site: Settings → Git → Deploy Hooks → create a hook for branch `main`, copy the URL. (Deploy hooks appear once the project is connected to this GitHub repository: `vercel git connect` from this folder, or Settings → Git → Connect.)
 2. Store the URL as a repository secret; it is never printed or committed:
 
 ```bash
@@ -77,6 +77,8 @@ and master, one file per voice with a pause wherever the other voice speaks;
 those files were cut at the pauses into one clip per line (`koan1-n1` …,
 `koan1-m1` …, `koan2-*`), so each line on the Read page has its own play button
 and the heading's button plays the dialogue in order.
+
+The readings are synthetic voices: they were generated with ElevenLabs text-to-speech on 2026-10-28 (the source files carry C2PA content credentials naming Eleven Labs Inc. as author) and cut with ffmpeg. No reuse terms have been set for the clips; ask before reusing them.
 
 `src/lib/audio.ts` maps headings and koan lines to clips and injects the
 buttons into the synced reading page at build time. It matches the headings in
