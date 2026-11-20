@@ -203,7 +203,7 @@ function Echoes({ e, index, href }: { e: AnalysisData["echoes"]; index: number; 
   );
   return (
     <Panel index={index} title="Echoes inside words" ph={ph} link={{ href, label: "README §42" }}
-      caption={<>Structure confined to the inside of words. Five runes apart a word repeats a rune {e.lag5.observed} times where {e.lag5.mean} are expected; six apart it obeys c = 24 − 2c′ {e.lag6.hits} times against {e.lag6.mean}; and the rune S carries {e.s.count} of the lag-5 pairs where {e.s.expected} would. Found on 2026-10-28 after a word-edge correction, and {e.labs.join(" and ")} report the same counts.</>}>
+      caption={<>Structure confined to the inside of words. Five runes apart a word repeats a rune {e.lag5.observed} times where {e.lag5.mean} are expected; six apart it obeys c = 24 − 2c′ {e.lag6.hits} times against {e.lag6.mean}; and the rune S carries {e.s.count} of the lag-5 pairs where {e.s.expected} would{e.s.pSearch !== null ? <>, a weighting that falls to p {e.s.pSearch} once the choice of rune among 29 is charged (README §82)</> : null}. Found on 2026-10-28 after a word-edge correction, and {e.labs.join(" and ")} report the same counts.</>}>
       <svg viewBox="0 0 420 270" className="svg" role="img" aria-label="Two within-word echoes and the S carrier">
         <Word runes={e.wordA.runes} i={e.wordA.i} lag={5} y={70} t={tA} label={`a real word from the unsolved pages, ${[...e.wordA.runes].length} runes`} />
         <Counter x={410} y={100} value={cA} ghost={`${e.lag5.mean} ± ${e.lag5.sd} expected`} note={`lag-5 equal pairs in ${fmt(e.lag5.pairs)}, z ${e.lag5.z}`} />

@@ -19,7 +19,7 @@ export type AnalysisData = {
   echoes: {
     lag5: { observed: number; pairs: number; mean: number; sd: number; z: number; p: number };
     lag6: { hits: number; pairs: number; mean: number; sd: number; z: number };
-    s: { count: number; expected: number; p: number };
+    s: { count: number; expected: number; p: number; pSearch: number | null };
     labs: string[];
     wordA: { runes: string; i: number }; wordB: { runes: string; i: number };
   };
@@ -98,6 +98,7 @@ export function loadAnalysis(): AnalysisData {
   const e6 = match(closure, /^\| 6 \| ([\d,]+) \| ([\d.]+) ± ([\d.]+) \| (\d+) \(z ([+-][\d.]+)\)/m, "closure_bundle lag-6 row");
   const pairs5 = match(closure, /^\| 5 \| ([\d,]+) \|/m, "closure_bundle lag-5 pairs");
   const sS = match(status, /(\d+) of the pairs S \(([\d.]+) expected[^,;)]*, p ([\d.]+)/, "STATUS S-carrier figures");
+  const sSearch = status.match(/the S weighting is p ([\d.]+)/);   // optional: the discovery-level p of README §82, shown beside the cell p
   const R = RUNES;
   const idx = (ch: string) => R.indexOf(ch);
   let n5 = 0, n6 = 0, nS = 0;
@@ -119,7 +120,7 @@ export function loadAnalysis(): AnalysisData {
   const echoes = {
     lag5: { observed: num(k5[1]), pairs: num(pairs5[1]), mean: num(k5[2]), sd: num(k5[3]), z: num(k5[4]), p: num(k5[5]) },
     lag6: { hits: num(e6[4]), pairs: num(e6[1]), mean: num(e6[2]), sd: num(e6[3]), z: num(e6[5]) },
-    s: { count: num(sS[1]), expected: num(sS[2]), p: num(sS[3]) },
+    s: { count: num(sS[1]), expected: num(sS[2]), p: num(sS[3]), pSearch: sSearch ? num(sSearch[1]) : null },
     labs: ["ZzNible", "pnotisdev"],
     wordA: twin ? { runes: twin.runes, i: twin.i5 } : must(bestA, "a word with a lag-5 pair"),
     wordB: twin ? { runes: twin.runes, i: twin.i6 } : must(bestB, "a word with a lag-6 hit"),
